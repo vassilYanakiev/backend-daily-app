@@ -1,0 +1,14 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "backend for daily app",
+  "main": "index.js",
+  "dependencies": {
+    "express": "*"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "test"
+  },
+  "homepage": "https://github.com/vassilYanakiev/backend-daily-app#readme"
+}
