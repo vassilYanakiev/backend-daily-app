@@ -1,26 +1,27 @@
-import express, { Request, Response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import fs from "fs";
+import express, { NextFunction, Request, Response } from "express";
+import { teamMembersRouter } from "./routes/team-members";
+import AppError from "./utils/appError";
+import { AppDataSource } from "./data-source";
 
 dotenv.config();
 const app = express();
 
-// Enable All CORS Requests (for development only)
-app.use(cors());
+AppDataSource.initialize()
+  .then(() => {
+    // Enable All CORS Requests (for development only)
+    app.use(cors());
+    app.use(express.json({ limit: "10kb" }));
 
-app.get("/team-members", (req: Request, res: Response) => {
-  fs.readFile("./src/team-members.json", "utf8", (err, data) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send("Internal Server Error");
-    } else {
-      const jsonData = JSON.parse(data);
-      res.json(jsonData);
-    }
-  });
-});
+    app.use("/api/v1", teamMembersRouter);
 
-app.listen(process.env.PORT, () => {
-  console.log(`App listening on port ${process.env.PORT}!`);
-});
+    app.all("*", (req: Request, res: Response, next: NextFunction) => {
+      next(new AppError(404, `Route ${req.originalUrl} not found`));
+    });
+
+    app.listen(process.env.PORT, () => {
+      console.log(`App listening on port ${process.env.PORT}!`);
+    });
+  })
+  .catch((error) => console.log(error));

@@ -4,8 +4,12 @@
   "description": "backend for daily app",
   "main": "index.ts",
   "dependencies": {
+    "@types/config": "^3.3.3",
     "dotenv": "^16.3.1",
-    "express": "*"
+    "express": "*",
+    "pg": "^8.11.3",
+    "typeorm": "^0.3.17",
+    "uuidv4": "^6.2.13"
   },
   "scripts": {
     "start": "ts-node src/app.ts",

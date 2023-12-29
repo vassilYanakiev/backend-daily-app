@@ -36,3 +36,23 @@
     ```bash
     docker run -it your-container-id sh
     ```
+
+
+
+ # Docker Compose README
+
+1.  Docker run image
+    ```bash
+    docker-compose up -d
+    ```
+
+2. Docker build & run image
+    ```bash
+    docker-compose up --build
+    ```
+
+3. Stop docker containers
+    ```bash
+    docker-compose down
+    ```
+
