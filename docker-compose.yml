@@ -1,18 +1,24 @@
 version: '3'
 services:
-  # postgres:
-  #   image: postgres:latest
-  #   container_name: postgres
-  #   ports:
-  #     - '6500:5432'
-  #   volumes:
-  #     - postgres:/var/lib/postgresql/data
-  #   env_file:
-  #     - ./.env
-  node-server:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    ports:
+      - '4432:5432'
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test
+      - POSTGRES_DB=test
+  node:
     restart: always
     build: .
     ports:
       - '4001:4001'
+    depends_on:
+      - postgres
+    environment:
+      - DATABASE_URL=postgresql://test:test@postgres:5432/test
 volumes:
   postgres:
