@@ -1,5 +1,6 @@
-import getTeamMembers from "../services/team-members";
 import { Request, Response, NextFunction } from "express";
+import { getTeamMembers, addTeamMmber } from "../services/team-members";
+import { CreateTeamMemberInput } from "../schemas/team-members-schema";
 
 export const getTeamHandler = async (
   req: Request,
@@ -17,5 +18,24 @@ export const getTeamHandler = async (
     res.status(200).json(teamMembers);
   } catch (error) {
     next(error);
+  }
+};
+
+export const addTeamMmberHandler = async (
+  req: Request<{}, {}, CreateTeamMemberInput>,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const post = await addTeamMmber(req.body);
+
+    res.status(201).json({
+      status: "success",
+      data: {
+        post,
+      },
+    });
+  } catch (err: any) {
+    next(err);
   }
 };
