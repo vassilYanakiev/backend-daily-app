@@ -1,13 +1,20 @@
+require("dotenv").config();
+import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { TeamMembers } from "./entities/teams";
+import config from "config";
+
+const postgresConfig = config.get<{
+  host: string;
+  port: number;
+  username: string;
+  password: string;
+  database: string;
+}>("postgresConfig");
 
 export const AppDataSource = new DataSource({
+  ...postgresConfig,
   type: "postgres",
-  host: "postgres",
-  port: 5432,
-  username: "test",
-  password: "test",
-  database: "test",
   synchronize: true,
   logging: true,
   entities: [TeamMembers],
