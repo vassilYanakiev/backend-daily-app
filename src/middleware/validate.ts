@@ -1,9 +1,24 @@
 import { Request, Response, NextFunction } from "express";
+import { AnyZodObject, ZodError } from "zod";
 
-const validate = () => {
+export const validate =
+  (schema: AnyZodObject) =>
   (req: Request, res: Response, next: NextFunction) => {
-    next();
-  };
-};
+    try {
+      schema.parse({
+        params: req.params,
+        query: req.query,
+        body: req.body,
+      });
 
-export default validate;
+      next();
+    } catch (error) {
+      if (error instanceof ZodError) {
+        return res.status(400).json({
+          status: "fail",
+          errors: error.errors,
+        });
+      }
+      next(error);
+    }
+  };

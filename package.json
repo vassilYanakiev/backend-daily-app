@@ -9,7 +9,8 @@
     "express": "*",
     "pg": "^8.11.3",
     "typeorm": "^0.3.17",
-    "uuidv4": "^6.2.13"
+    "uuidv4": "^6.2.13",
+    "zod": "^3.22.4"
   },
   "scripts": {
     "start": "ts-node src/app.ts",

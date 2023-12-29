@@ -7,8 +7,11 @@ export class TeamMembers extends Model {
   name: string;
 
   @Column()
-  surname: string;
+  role: string;
 
   @Column()
-  role: string;
+  team_id: string;
+
+  @Column()
+  surname: string;
 }

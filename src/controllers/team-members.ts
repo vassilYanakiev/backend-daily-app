@@ -7,7 +7,8 @@ export const getTeamHandler = async (
   next: NextFunction
 ) => {
   try {
-    const teamMembers = await getTeamMembers();
+    const { teamId } = req.query;
+    const teamMembers = await getTeamMembers(teamId as string);
 
     if (!teamMembers) {
       return res.status(404).json({ message: "Team members not found" });
