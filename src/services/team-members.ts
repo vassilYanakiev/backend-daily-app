@@ -1,6 +1,5 @@
-import { TeamMembers } from "../entities/teams";
+import { TeamMembers } from "../entities/team-members";
 import { AppDataSource } from "../data-source";
-
 
 const teamMembersRepository = AppDataSource.getRepository(TeamMembers);
 

@@ -1,17 +1,11 @@
 import { Column, Entity } from "typeorm";
-import Model from "./model.entity";
+import Model from "./base-model";
 
-@Entity("teamMember")
-export class TeamMembers extends Model {
+@Entity("teams")
+export class Teams extends Model {
   @Column()
-  name: string;
-
-  @Column()
-  role: string;
+  team_name: string;
 
   @Column()
   team_id: string;
-
-  @Column()
-  surname: string;
 }

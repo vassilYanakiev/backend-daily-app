@@ -8,18 +8,10 @@ const params = {
 
 export const addTeamMembertSchema = object({
   body: object({
-    name: string({
-      required_error: "Name is required",
-    }),
-    surname: string({
-      required_error: "Surname is required",
-    }),
-    role: string({
-      required_error: "Role is required",
-    }),
-    team_id: string({
-      required_error: "Team id is required",
-    }),
+    name: string().min(1, "Name is required"),
+    surname: string().min(1, "Surname is required"),
+    role: string().min(1, "Role is required"),
+    team_id: string().min(1, "Team Name is required"),
   }),
 });
 
