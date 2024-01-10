@@ -1,7 +1,6 @@
 require("dotenv").config();
 import "reflect-metadata";
 import { DataSource } from "typeorm";
-import { TeamMembers } from "./entities/team-members";
 import config from "config";
 
 const postgresConfig = config.get<{

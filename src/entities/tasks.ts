@@ -7,7 +7,6 @@ export class Tasks extends Model {
   @Column()
   task_name: string;
 
-  @ManyToOne(() => TeamMembers)
-  @JoinColumn({ name: "user_assigned" })
-  user_assigned: string;
+  @Column()
+  task_id: string;
 }

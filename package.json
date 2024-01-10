@@ -4,8 +4,12 @@
   "description": "backend for daily app",
   "main": "index.ts",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
     "express": "*",
+    "jsonwebtoken": "^9.0.2",
     "pg": "^8.11.3",
+    "redis": "^4.6.12",
     "typeorm": "^0.3.17",
     "uuidv4": "^6.2.13",
     "zod": "^3.22.4"

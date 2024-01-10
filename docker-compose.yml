@@ -12,6 +12,15 @@ services:
   node:
     restart: always
     build: .
+    develop:
+      watch:
+        - action: sync
+          path: ./src
+          target: /usr/app/src
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: package.json
     ports:
       - '4001:4001'
     depends_on:
