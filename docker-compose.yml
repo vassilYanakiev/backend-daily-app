@@ -27,5 +27,13 @@ services:
       - postgres
     environment:
       - DATABASE_URL=postgresql://test:test@postgres:5432/test
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports:
+      - '6379:6379'
+    volumes:
+      - redisDB:/data
 volumes:
   postgres:
+  redisDB:
